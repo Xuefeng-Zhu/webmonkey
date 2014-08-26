@@ -1,30 +1,58 @@
 <!DOCTYPE html public "display of affection from creativejs">
-  <head>
-    <meta charset="uft-8">
-    <title>Fireworks!</title>
-    <link href="css/fireworks.css" rel="stylesheet">
-  </head>
-  <!--
-  I love including these comments in pages. It pleases me that
-  you're reading them as well. It's like we're having a moment.
-  We are. Anyway, the CreativeJS team though Fireworks would
-  be teh r0xx0rz and I volunteered to give this a shot. So
-  I hope you're enjoying them and doing the "Aaah! Oooh!"
-  thing. If not I'm a bit upset, but I'll let it slide.
+<head>
+  <meta charset="uft-8">
+  <title>Fireworks!</title>
+  <link href="css/fireworks.css" rel="stylesheet">
+  <link href="css/semantic.min.css" rel="stylesheet">
+</head>
+<!--
+I love including these comments in pages. It pleases me that
+you're reading them as well. It's like we're having a moment.
+We are. Anyway, the CreativeJS team though Fireworks would
+be teh r0xx0rz and I volunteered to give this a shot. So
+I hope you're enjoying them and doing the "Aaah! Oooh!"
+thing. If not I'm a bit upset, but I'll let it slide.
+Also, big shoutz to Paul Irish for the rAF shimidimmydoo.
+Paul | aerotwist
+-->
+<body>
+  <div class="ui large form segment" style="
+    position: absolute;
+    bottom: 10%;
+    left: 30%;
+    z-index: 100;
+    width: 50%;
+    ">
+    <div class="field">
+      <label>NetID</label>
+      <input id="netid" placeholder="NetID" type="text" onkeydown="submit()">
+    </div>
+    <div class="ui blue submit button" style="float: right">Submit</div>
+  </div>
+  <!-- Hiding library elements in the DOM is fun -->
+  <aside id="library">
+    <img src="images/nightsky.png" id="nightsky" />
+    <img src="images/big-glow.png" id="big-glow" />
+    <img src="images/small-glow.png" id="small-glow" />
+  </aside>
+</body>
+<script src="js/requestanimframe.js"></script>
+<script src="js/fireworks.js"></script>
+<script src="js/semantic.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+<script type="text/javascript">
+  var ref = new Firebase("https://webmonkey.firebaseio.com/");
+  function submit (argument) {
+    if (event.keyCode == 13){
+      if (document.getElementById("netid").value == ""){
+        return;
+      }
+      ref.push(document.getElementById("netid").value);
+      document.getElementById("netid").value = "";
+      for (var i = 0; i < 10; i++)
+        firework();
+    }
+  }
 
-  Also, big shoutz to Paul Irish for the rAF shimidimmydoo.
-
-  Paul | aerotwist
-  -->
-  <body>
-
-    <!-- Hiding library elements in the DOM is fun -->
-    <aside id="library">
-      <img src="images/nightsky.png" id="nightsky" />
-      <img src="images/big-glow.png" id="big-glow" />
-      <img src="images/small-glow.png" id="small-glow" />
-    </aside>
-  </body>
-  <script src="js/requestanimframe.js"></script>
-  <script src="js/fireworks.js"></script>
+</script>>
 </html>
